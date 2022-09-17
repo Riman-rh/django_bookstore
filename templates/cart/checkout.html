@@ -1,0 +1,30 @@
+{% extends '_base.html' %}
+{% block content %}
+{% load static %}
+<form data-orderId="{{order.id}}" method="post" id="form" method="">
+    <div>
+        <input type="text" placeholder="Firstname" name="firstname"/>
+    </div>
+    <div>
+        <input type="text" placeholder="Lastname" name="lastname"/>
+    </div>
+    <div>
+        <input type="email" placeholder="Email" name="email"/>
+    </div>
+    <div>
+        <input type="text" placeholder="Address" name="address"/>
+    </div>
+    <div>
+        <input type="number" placeholder="Zipcode" name="zipcode"/>
+    </div>
+
+    <div>
+        <input type="text" placeholder="Phone" name="phone"/>
+    </div>
+
+
+    <button type="submit">Confirm</button>
+</form>
+<script type="text/javascript" src="{% static 'js/checkout.js' %}">
+</script>
+{% endblock %}

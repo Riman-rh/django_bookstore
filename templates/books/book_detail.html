@@ -1,0 +1,54 @@
+{%extends '_base.html'%}
+{% load static %}
+{% block title %} {{book.title}} {% endblock %}
+{% block content %}
+<div class="book-container">
+    <div class="left-div">
+        <img  class="image-detail"  src="{{book.cover.url}}"/>
+        <p class="side-p">{{book.date_published}}</p>
+        <p class="side-p">{{book.price}} DZA</p>
+    </div>
+    <div class="detail-inf">
+        <h2 class="inf-title">{{book.title}}</h2>
+        <p class="inf-author">by {{book.author}}</p>
+        <button data-book="{{book.id}}" data-action="add" class="update_cart">add to cart</button>
+        <p class="inf-desc"> {{book.description}}</p>
+    </div>
+    </div>
+</div>
+
+<div class="reviews-div">
+    <div class="left-div">
+    </div>
+    <div class="reviews">
+        <div>
+    <h3>Create Review</h3>
+       <form method="post" action="{% url 'reviewcreate' book.id %}">
+        {%csrf_token%}
+        <div>
+           <input class="rating-input" type="number" name="rating" placeholder="rating"/>
+        </div>
+        <div>
+            <input class="review-input" type="text" name="review" placeholder="review"/>
+        </div>
+
+       <button type="submit">Add</button>
+    </form>
+</div>
+       {% for review in book.reviews.all  %}
+       <div class="review">
+           <h3 class="review-owner">Review by {{review.owner}}</h3>
+           <p class="review-date">{{review.date_created | date}}</p>
+           {% with ''|center:review.rating as range %}
+            {% for index in range %}
+                <i class="fa-solid fa-star"></i>
+            {% endfor %}
+           {% endwith %}
+
+            <p>{{review.review}}<p>
+       </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

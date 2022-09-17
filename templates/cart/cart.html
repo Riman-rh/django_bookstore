@@ -1,0 +1,54 @@
+{% extends '_base.html' %}
+{% block content %}
+
+    <div class="cart_header">
+        <div><p>total: {{cart_total }} DZA</p></div>
+        <div><p>items: {{total_items}}</p></div>
+        <a href="{% url 'checkout'%}"> <button class="checkout_btn" > Checkout </button></a>
+    </div>
+
+    <div class="items_wrapper">
+    <div>
+    <div class="items">
+        <div class="item_image">
+        </div>
+        <div class="item_title">
+            <p>Title</p>
+        </div>
+        <div class="item">
+            <p>Price</p>
+        </div>
+        <div class="item">
+            <p> Quantity</p>
+        </div>
+        <div class="item">
+            <p>Total</p>
+        </div>
+    </div>
+{% for item in items %}
+    <div class="item">
+        <div class="item_image">
+            <img src="{{item.book.cover.url}}"/>
+        </div>
+        <div class="item_title">
+            <p>{{item.book.title}}</p>
+        </div>
+        <div class="item">
+            <p>{{item.book.price}}</p>
+        </div>
+        <div class="item item_quantity">
+            <p> {{item.quantity}}</p>
+            <div class="icon_quantity">
+                <i data-action="add" data-book="{{item.book.id}}" class="fa-sharp fa-solid fa-caret-up update_cart" ></i>
+                <i data-action="remove" data-book="{{item.book.id}}" class="fa-sharp fa-solid fa-caret-down update_cart"></i>
+            </div>
+        </div>
+        <div class="item">
+            <p>{{item.get_total_item}} DZA</p>
+        </div>
+    </div>
+    </div>
+
+{% endfor %}
+ </div>
+{% endblock %}
