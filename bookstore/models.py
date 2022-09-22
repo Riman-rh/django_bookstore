@@ -36,7 +36,7 @@ class Review(models.Model):
 
 
 class Order(models.Model):
-    owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    owner = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
     complete = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
 

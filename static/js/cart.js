@@ -5,11 +5,29 @@ for( var i=0; i < updateBtns.length; i++){
         var action = this.dataset.action
         console.log('bookId: ', bookId, 'action: ', action)
         if(user === 'AnonymousUser'){
-            console.log('you are not logged in')
+            createCookieItem(bookId,action)
         }else{
             updateUserOrder(bookId, action)
         }
     })
+}
+
+function createCookieItem(bookId,action){
+     if (action == "add"){
+        if (cart[bookId] == undefined ){
+                cart[bookId] = {'quantity':1}
+            }else{
+                cart[bookId]['quantity'] += 1
+            }
+        }
+    else if(action == "remove"){
+        cart[bookId]['quantity'] -=1
+        if(cart[bookId]['quantity']<=0 ) {
+            delete cart[bookId]
+        }
+    }
+    document.cookie = 'cart='+ JSON.stringify(cart) + ';domain=;path=/'
+    location.reload()
 }
 
 function updateUserOrder(bookId, action){
@@ -27,6 +45,6 @@ function updateUserOrder(bookId, action){
         return response.json()
     })
     .then((data) => {
-        console.log('data', data)
+       location.reload()
     })
 }

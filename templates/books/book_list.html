@@ -3,18 +3,15 @@
 {% block title %}{% endblock %}
 {% block content %}
 
-    <div class="books-containner">
+    <div class="books_wrapper">
     {% for book in books%}
     <div class="book_card">
-      <img src="{{book.cover.url}}" class="book-img" alt="{book.title}">
-      <div class="book_card-body">
-        <h5 class="book-title">{{book.title}}</h5>
-        <div class="book-inf">
-            <p class="book-text">{{book.author}}</p>
-            <p>{{book.price}}DZA</p>
-        </div>
-        <a href="{{book.get_absolute_url}}" class="btn card-btn">Detail</a>
-      </div>
+      <img src="{{book.cover.url}}" class="books_img" alt="{book.title}">
+        <h5 class="books_title">{{book.title}}</h5>
+        <p class="books_author">{{book.author}}</p>
+        <p class="books_price">{{book.price}}DZA</p>
+        <a href="{{book.get_absolute_url}}"><button  class="books_btn">Detail</button></a>
+
     </div>
 
     {% endfor %}

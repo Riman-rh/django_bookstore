@@ -30,7 +30,7 @@
               body: JSON.stringify({formData})
         })
         .then((response)=>{
-            window.location.assign("/success")
+            window.location.assign("/success/")
         })
 
     }
