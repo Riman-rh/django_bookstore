@@ -4,8 +4,8 @@ setup:
 build:
   docker:
     web: Dockerfile
-  release:
-    image: web
+release:
+  image: web
   command:
     - python manage.py collectstatic --noinput
 run:
