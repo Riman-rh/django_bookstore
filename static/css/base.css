@@ -116,11 +116,15 @@ nav{
     justify-content:center;
 }
 .book_card{
-    max-width:300px;
+    width:250px;
     height:400px;
     padding:30px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
     border:1px solid lightgray;
-     text-align:center;
+    text-align:center;
 
 }
 .books_img{
@@ -189,18 +193,18 @@ nav{
     background-color:#00a42c;
 }
 .book_title{
-    font-size:25px;
+    font-size:20px;
     font-weight:500;
     margin-bottom:1rem;
     color:#282828;
 }
 .book_author{
-    font-size:20px;
+    font-size:18px;
     font-weight:400;
     margin-bottom:1rem;
 }
 .book_price{
-    font-size:20px;
+    font-size:18px;
     font-weight:500;
     color:#960018;
     margin-bottom:1rem;

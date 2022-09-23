@@ -87,7 +87,6 @@ def cart(request):
         else:
             return HttpResponseRedirect(reverse_lazy("book_list"))
 
-
     context = {'items': orderItems, 'cart_total': cart_total, 'total_items': total_items}
     return render(request, 'cart/cart.html', context)
 
