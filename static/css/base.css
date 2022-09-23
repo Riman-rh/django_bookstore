@@ -116,6 +116,8 @@ nav{
     justify-content:center;
 }
 .book_card{
+    width:250px;
+    height:400px;
     padding:30px;
     border:1px solid lightgray;
      text-align:center;
