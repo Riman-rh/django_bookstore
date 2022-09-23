@@ -8,10 +8,14 @@ from django.http.response import HttpResponseRedirect, HttpResponse
 from django.http import JsonResponse
 from .utils import cookieCart
 
+
 def bookListView(request):
     if request.user.is_authenticated:
-        order = Order.objects.get(owner=request.user,complete=False)
-        total_items = order.get_total_items
+        try:
+            order = Order.objects.get(owner=request.user,complete=False)
+            total_items = order.get_total_item
+        except:
+            total_items = 0
     else:
         cookieData = cookieCart(request)
         total_items = cookieData['total_items']
@@ -23,8 +27,11 @@ def bookListView(request):
 
 def bookDetailView(request, pk):
     if request.user.is_authenticated:
-        order = Order.objects.get(owner=request.user,complete=False)
-        total_items = order.get_total_items
+        try:
+            order = Order.objects.get(owner=request.user,complete=False)
+            total_items = order.get_total_items
+        except:
+            total_items = 0
     else:
         try:
             cart = json.loads(request.COOKIES['cart'])
@@ -73,9 +80,13 @@ def cart(request):
         total_items = order.get_total_items
     else:
         cookieData = cookieCart(request)
-        orderItems = cookieData['orderItems']
-        cart_total = cookieData['cart_total']
-        total_items = cookieData['total_items']
+        if cookieData.length > 0:
+            orderItems = cookieData['orderItems']
+            cart_total = cookieData['cart_total']
+            total_items = cookieData['total_items']
+        else:
+            return HttpResponseRedirect(reverse_lazy("book_list"))
+
 
     context = {'items': orderItems, 'cart_total': cart_total, 'total_items': total_items}
     return render(request, 'cart/cart.html', context)
@@ -102,15 +113,21 @@ def updatecart(request):
 
 def checkout(request):
     if request.user.is_authenticated:
-        order = Order.objects.get(owner=request.user, complete=False)
+        try:
+            order = Order.objects.get(owner=request.user, complete=False)
+        except:
+            return HttpResponseRedirect(reverse_lazy("book_list"))
         orderItems = order.orderitem_set.all()
         cart_total = order.get_total_cart
         total_items = order.get_total_items
     else:
         cookieData = cookieCart(request)
-        orderItems = cookieData['orderItems']
-        cart_total = cookieData['cart_total']
-        total_items = cookieData['total_items']
+        if cookieData>0:
+            orderItems = cookieData['orderItems']
+            cart_total = cookieData['cart_total']
+            total_items = cookieData['total_items']
+        else:
+            return HttpResponseRedirect(reverse_lazy("book_list"))
     context = {'items': orderItems, 'cart_total': cart_total, 'total_items': total_items}
     return render(request, 'cart/checkout.html', context)
 
