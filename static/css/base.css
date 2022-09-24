@@ -117,7 +117,7 @@ nav{
 }
 .book_card{
     width:250px;
-    height:400px;
+    max-width:250px;
     padding:30px;
     display:flex;
     flex-direction:column;
