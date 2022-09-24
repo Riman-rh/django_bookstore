@@ -30,12 +30,9 @@
               body: JSON.stringify({formData})
         })
         .then((response)=>{
-            window.location.assign("/success/")
-                for ( var i=0; i < cart.length; i++){
-                     delete cart[i]
-                }
-                }
+                window.location.assign("/success/")
 
-        )
+                })
+
 
     }

@@ -165,5 +165,6 @@ def success(request):
         print('Cart', cart)
     except:
         cart = {}
-
-    return render(request, 'cart/success.html')
+    response = render(request, 'cart/success.html')
+    response.delete_cookie("cart")
+    return response
