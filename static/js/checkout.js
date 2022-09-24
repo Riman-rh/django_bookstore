@@ -31,8 +31,11 @@
         })
         .then((response)=>{
             window.location.assign("/success/")
-            deleteCookie('cart')
+                for ( var i=0; i < cart.length; i++){
+                     delete cart[i]
+                }
+                }
 
-        })
+        )
 
     }

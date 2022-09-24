@@ -11,6 +11,7 @@
     -webkit-box-shadow: 2px 2px 5px 0px rgba(176,176,176,0.75);
     -moz-box-shadow: 2px 2px 5px 0px rgba(176,176,176,0.75);
 }
+
 .checkout_btn{
     padding:8px 12px;
     background-color:rgba(0, 128, 0,0.9);
@@ -32,6 +33,7 @@
     -webkit-box-shadow: 2px 2px 5px 0px rgba(176,176,176,0.75);
     -moz-box-shadow: 2px 2px 5px 0px rgba(176,176,176,0.75);
 }
+
 .items, .item{
     display:flex;
     justify-content: center;
@@ -118,6 +120,7 @@ nav{
 .book_card{
     width:250px;
     max-width:250px;
+    height:400px;
     padding:30px;
     display:flex;
     flex-direction:column;
@@ -345,5 +348,4 @@ nav{
     text-decoration:none;
     position:absolute;
     right:25px;
-
 }

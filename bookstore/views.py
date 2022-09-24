@@ -160,4 +160,10 @@ def orderprocess(request):
 
 
 def success(request):
+    try:
+        cart = json.loads(request.COOKIES['cart'])
+        print('Cart', cart)
+    except:
+        cart = {}
+
     return render(request, 'cart/success.html')
