@@ -80,7 +80,7 @@ def cart(request):
         total_items = order.get_total_items
     else:
         cookieData = cookieCart(request)
-        if cookieData.length > 0:
+        if len(cookieData)> 0:
             orderItems = cookieData['orderItems']
             cart_total = cookieData['cart_total']
             total_items = cookieData['total_items']
@@ -121,7 +121,7 @@ def checkout(request):
         total_items = order.get_total_items
     else:
         cookieData = cookieCart(request)
-        if cookieData>0:
+        if len(cookieData) >0:
             orderItems = cookieData['orderItems']
             cart_total = cookieData['cart_total']
             total_items = cookieData['total_items']
